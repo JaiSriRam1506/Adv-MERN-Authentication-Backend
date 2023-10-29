@@ -15,11 +15,11 @@ app.use(cookieParser());
 app.use(
     cors(
         {
-        origin:'*',
+        origin:'https://yoyoauth-app.vercel.app/',
         //origin:'*',
         credentials:true,
         optionSuccessStatus:200,
-        //preflightContinue:false,
+        preflightContinue:false,
         //allowedHeaders:"Origin, X-Requested-With, Content-Type,Accept, x-client-key, x-client-token, x-client-secret, Authorization"
     }
     )
