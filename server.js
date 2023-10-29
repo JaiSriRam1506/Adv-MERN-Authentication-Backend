@@ -17,7 +17,8 @@ app.use(
         origin:'https://yoyoauth-app.varcel.app',
         credentials:true,
         optionSuccessStatus:200,
-        preflightContinue:false
+        preflightContinue:false,
+        allowedHeaders:"Origin, X-Requested-With, Content-Type,Accept, x-client-key, x-client-token, x-client-secret, Authorization"
     })
 )
 app.use('/api', apiRoutes);
