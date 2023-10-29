@@ -14,7 +14,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(
     cors({
-        origin:'https://yoyoauth-app.varcel.app',
+        //origin:'https://yoyoauth-app.varcel.app',
+        origin:'*',
         credentials:true,
         optionSuccessStatus:200,
         preflightContinue:false,
