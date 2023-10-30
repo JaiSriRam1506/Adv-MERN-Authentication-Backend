@@ -31,6 +31,7 @@ async function userRegistration(req,res){
         
         
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation
         ErrorResponse.data=error
         ErrorResponse.stack=ServerConfig.NODE_ENV=='development'?error.stack:null;
@@ -50,6 +51,7 @@ async function sendVerificationEmail(req,res){
             .status(StatusCodes.OK)
             .json(SuccessResponse)
     } catch (error) {
+    console.log(error);
     ErrorResponse.message=error.explanation;
     ErrorResponse.error=error;
     ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -68,6 +70,7 @@ async function forgotPassword(req,res){
             .status(StatusCodes.OK)
             .json(SuccessResponse)
     } catch (error) {
+    console.log(error);
     ErrorResponse.message=error.explanation;
     ErrorResponse.error=error;
     ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -86,6 +89,7 @@ async function changePassword(req,res){
             .status(StatusCodes.OK)
             .json(SuccessResponse)
     } catch (error) {
+    console.log(error);
     ErrorResponse.message=error.explanation;
     ErrorResponse.error=error;
     ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -104,6 +108,7 @@ async function verifyUser(req,res){
             .status(StatusCodes.OK)
             .json(SuccessResponse)
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
         ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -122,6 +127,7 @@ async function resetPassword(req,res){
             .status(StatusCodes.OK)
             .json(SuccessResponse)
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
         ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -150,6 +156,7 @@ async function userLogin(req,res){
                   .json(SuccessResponse)
         
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation
         ErrorResponse.error=error
         ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:""
@@ -175,6 +182,7 @@ async function userLogout(req,res){
                   })
                 .json(SuccessResponse)
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
         ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -195,6 +203,7 @@ async function getUser(req,res){
                 .status(StatusCodes.OK)
                 .json(SuccessResponse)
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
         ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -213,6 +222,7 @@ async function getUsers(req,res){
                 .status(StatusCodes.OK)
                 .json(SuccessResponse)
     } catch (error) {
+        console.log(error);
         console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
@@ -233,6 +243,7 @@ async function updateUser(req,res){
                 .status(StatusCodes.OK)
                 .json(SuccessResponse)
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
         ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -270,6 +281,7 @@ async function updateRole(req,res){
                 .status(StatusCodes.OK)
                 .json(SuccessResponse)
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
         ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -288,6 +300,7 @@ async function sendAutomatedEmail(req,res){
             .status(StatusCodes.OK)
             .json(SuccessResponse)
 } catch (error) {
+    console.log(error);
     ErrorResponse.message=error.explanation;
     ErrorResponse.error=error;
     ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -317,6 +330,7 @@ async function sendLoginCode(req,res){
                 //   })
                   .json(SuccessResponse)
 } catch (error) {
+    console.log(error);
     ErrorResponse.message=error.explanation;
     ErrorResponse.error=error;
     ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
@@ -346,6 +360,7 @@ async function loginWithCode(req,res){
             .json(SuccessResponse)
         
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
         ErrorResponse.stack=ServerConfig.NODE_ENV==='development'?error.stack:null;
