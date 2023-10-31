@@ -3,29 +3,32 @@ const jwt=require('jsonwebtoken')
 const {ServerConfig}=require('../../config')
 const serverConfig = require('../../config/server-config')
 
-function createToken(input){
+async function createToken(input){
     try {
 
-        return jwt.sign(input,serverConfig.JWT_SECRET,{expiresIn:ServerConfig.JWT_EXPIRY})  
+        return await jwt.sign(input,serverConfig.JWT_SECRET,{expiresIn:ServerConfig.JWT_EXPIRY})  
     } catch (error) {
+        console.log(error)
         throw error;
     }
 
 }
 
-function verifyToken(token){
+async function verifyToken(token){
     try {
-        return jwt.verify(token,serverConfig.JWT_SECRET)
+        return await jwt.verify(token,serverConfig.JWT_SECRET)
     } catch (error) {
+        console.log(error)
         throw error;
     }
 
 }
 
-function checkPassword(plainPassword,encryptedPassword){
+async function checkPassword(plainPassword,encryptedPassword){
     try {
-        return bcrypt.compareSync(plainPassword,encryptedPassword) 
+        return await bcrypt.compare(plainPassword,encryptedPassword) 
     } catch (error) {
+        console.log(error)
         throw error;
     }
 }
