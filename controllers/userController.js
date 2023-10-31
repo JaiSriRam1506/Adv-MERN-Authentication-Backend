@@ -23,7 +23,8 @@ async function userRegistration(req,res){
                   .cookie("token",jwtToken,{
                      path:'/',
                      httpOnly:true,
-                     expiresIn:ServerConfig.JWT_EXPIRY,
+                     //expiresIn:ServerConfig.JWT_EXPIRY,
+                     expires:new Date(Date.now() + ServerConfig.JWT_EXPIRY * 1000),
                      sameSite:'none',
                      secure:true
                   })

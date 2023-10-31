@@ -31,6 +31,7 @@ async function checkAuthentication(req,res,next){
             throw new AppError("Unable to authenticate to the Server,Please try again",StatusCodes.INTERNAL_SERVER_ERROR);
         }
     } catch (error) {
+        console.log(error);
         ErrorResponse.message=error.explanation;
         ErrorResponse.error=error;
         let statusCode=StatusCodes.INTERNAL_SERVER_ERROR
@@ -83,6 +84,7 @@ async function isVerified(req,res,next){
         if(req.user && req.user.isVerified)next();
         else throw new AppError('User is not verified, Please verify to do the required Action',StatusCodes.UNAUTHORIZED)
     } catch (error) {
+        console.log(error)
         return res
                   .status(StatusCodes.UNAUTHORIZED)
                   .json(error)
@@ -97,6 +99,7 @@ async function checkLoginStatus(req,res,next){
         if(!response) return res.json(false);
         return res.json(true);
     } catch (error) {
+        console.log(error);
         return res
         .status(StatusCodes.UNAUTHORIZED)
         .json(false)
