@@ -5,7 +5,7 @@ const serverConfig = require('../../config/server-config')
 
 async function createToken(input){
     try {
-
+        console.log("CreateToken:----",input)
         return await jwt.sign(input,serverConfig.JWT_SECRET,{expiresIn:ServerConfig.JWT_EXPIRY})  
     } catch (error) {
         console.log(error)
@@ -16,6 +16,7 @@ async function createToken(input){
 
 async function verifyToken(token){
     try {
+        console.log("Verify Token:---",token)
         return await jwt.verify(token,serverConfig.JWT_SECRET)
     } catch (error) {
         console.log(error)
@@ -26,6 +27,7 @@ async function verifyToken(token){
 
 async function checkPassword(plainPassword,encryptedPassword){
     try {
+        console.log("CheckPassword:---",plainPassword,encryptedPassword)
         return await bcrypt.compare(plainPassword,encryptedPassword) 
     } catch (error) {
         console.log(error)
