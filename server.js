@@ -12,22 +12,21 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.options("*", cors());
-// app.use(
-//   cors({
-//     origin: "*",
-//     methods: "*",
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     credentials: true,
+//app.options("*", cors());
+app.use(
+  cors({
+    // origin: "*",
+    // methods: "*",
+    // allowedHeaders: ["Content-Type", "Authorization"],
+    // credentials: true,
 
-//     //origin: "https://yoyoauth-app.vercel.app",
-//     //origin:'*',
-//     //credentials: true,
-//     // optionSuccessStatus:200,
-//     // preflightContinue:false,
-//     //allowedHeaders:"Origin, X-Requested-With, Content-Type,Accept, x-client-key, x-client-token, x-client-secret, Authorization"
-//   })
-// );
+    origin: "https://yoyoauth-app.vercel.app",
+    credentials: true,
+    optionSuccessStatus: 200,
+    // preflightContinue:false,
+    //allowedHeaders:"Origin, X-Requested-With, Content-Type,Accept, x-client-key, x-client-token, x-client-secret, Authorization"
+  })
+);
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
