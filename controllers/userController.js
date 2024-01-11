@@ -30,9 +30,6 @@ async function userRegistration(req, res) {
       userAgent,
     };
     SuccessResponse.message = "User Registration Successful";
-    console.log(SuccessResponse.data);
-    req.session.cookie.expires = false;
-    req.session.cookie.maxAge = new Date(Date.now() + 30 * 24 * 3600000);
     return res
       .status(StatusCodes.CREATED)
       .cookie("token", JWT_Token, {
@@ -174,7 +171,8 @@ async function userLogin(req, res) {
       userAgent,
     };
     SuccessResponse.message = "Login Successful";
-    req.session.cookie.expires = 2592000000;
+    let cDate = new Date();
+    cDate.setDate(cDate.getDate() + 2592000000);
     return res
       .status(StatusCodes.OK)
       .cookie("token", JWT_Token, {
@@ -187,7 +185,7 @@ async function userLogin(req, res) {
         // sameSite = only send cookie if the request is coming from the same origin
         sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
         // maxAge = how long the cookie is valid for in milliseconds
-        expires: 2592000000, // 1 hour
+        expires: cDate, // 1 hour
       })
       .json(SuccessResponse);
   } catch (error) {
