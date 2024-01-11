@@ -41,7 +41,7 @@ async function checkAuthentication(req, res, next) {
     }
   } catch (error) {
     console.log(error);
-    ErrorResponse.message = error.explanation;
+    ErrorResponse.message = error.explanation + req.cookies;
     ErrorResponse.error = error;
     let statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
     ErrorResponse.stack =
