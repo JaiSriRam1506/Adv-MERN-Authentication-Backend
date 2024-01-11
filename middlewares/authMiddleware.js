@@ -7,7 +7,6 @@ const { ServerConfig } = require("../config");
 async function checkAuthentication(req, res, next) {
   try {
     const token = req.cookies.token;
-    console.log("-----", token);
     if (!token)
       throw new AppError(
         "Please provide Access Token or Login first",
@@ -106,7 +105,6 @@ async function isVerified(req, res, next) {
 async function checkLoginStatus(req, res, next) {
   try {
     const token = req.cookies.token;
-    console.log("LoginStatus:---", token);
     if (!token) return res.json(false);
     const response = await AUTH.verifyToken(token);
     if (!response) return res.json(false);
