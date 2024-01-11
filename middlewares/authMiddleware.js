@@ -40,17 +40,17 @@ async function checkAuthentication(req, res, next) {
     }
   } catch (error) {
     console.log(error);
-    ErrorResponse.message = error.explanation + req.cookies;
+    ErrorResponse.message = error.explanation + req;
     ErrorResponse.error = error;
     let statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
     ErrorResponse.stack =
-      ServerConfig.NODE_ENV === "development" ? error.stack : null;
+      ServerConfig.NODE_ENV === "development" ? error.stack : error.stack;
     if (error.name == "JsonWebTokenError") {
-      ErrorResponse.message = "Invalid JWT token";
+      ErrorResponse.message = "Invalid JWT token------" + req;
       statusCode = StatusCodes.UNAUTHORIZED;
     }
     if (error.name == "TokenExpiredError") {
-      ErrorResponse.message = "JWT Token has been expired";
+      ErrorResponse.message = "JWT Token has been expired-------" + req;
       statusCode = StatusCodes.UNAUTHORIZED;
     }
     return res.status(statusCode).json(ErrorResponse);
