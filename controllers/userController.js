@@ -44,7 +44,8 @@ async function userRegistration(req, res) {
         // sameSite = only send cookie if the request is coming from the same origin
         sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
         // maxAge = how long the cookie is valid for in milliseconds
-        maxAge: 2592000000, // 1 hour
+        //maxAge: 2592000000, // 1 hour
+        expires: new Date(Date.now() + 30 * 24 * 3600000),
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -172,6 +173,8 @@ async function userLogin(req, res) {
       userAgent,
     };
     SuccessResponse.message = "Login Successful";
+    req.session.cookie.expires = false;
+    req.session.cookie.maxAge = 2592000000;
     return res
       .status(StatusCodes.OK)
       .cookie("token", JWT_Token, {
