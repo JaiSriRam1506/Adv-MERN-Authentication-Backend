@@ -35,12 +35,16 @@ async function userRegistration(req, res) {
     return res
       .status(StatusCodes.CREATED)
       .cookie("token", JWT_Token, {
-        path: "/",
+        // expiresIn: ServerConfig.JWT_EXPIRY,
         httpOnly: true,
-        //expiresIn:ServerConfig.JWT_EXPIRY,
-        expiresIn: new Date(Date.now() + 60 * 1000),
-        sameSite: "none",
+        // path = where the cookie is valid
+        path: "/",
+        // secure = only send cookie over https
         secure: true,
+        // sameSite = only send cookie if the request is coming from the same origin
+        sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
+        // maxAge = how long the cookie is valid for in milliseconds
+        maxAge: 3600000, // 1 hour
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -171,11 +175,16 @@ async function userLogin(req, res) {
     return res
       .status(StatusCodes.OK)
       .cookie("token", JWT_Token, {
-        path: "/",
+        // expiresIn: ServerConfig.JWT_EXPIRY,
         httpOnly: true,
-        expiresIn: "1h",
-        sameSite: false,
+        // path = where the cookie is valid
+        path: "/",
+        // secure = only send cookie over https
         secure: true,
+        // sameSite = only send cookie if the request is coming from the same origin
+        sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
+        // maxAge = how long the cookie is valid for in milliseconds
+        maxAge: 3600000, // 1 hour
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -197,11 +206,16 @@ async function userLogout(req, res) {
     return res
       .status(StatusCodes.OK)
       .cookie("token", "", {
-        path: "/",
+        // expiresIn: ServerConfig.JWT_EXPIRY,
         httpOnly: true,
-        expiresIn: 0, // 1 day
-        sameSite: "none",
+        // path = where the cookie is valid
+        path: "/",
+        // secure = only send cookie over https
         secure: true,
+        // sameSite = only send cookie if the request is coming from the same origin
+        sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
+        // maxAge = how long the cookie is valid for in milliseconds
+        maxAge: 0, // 1 hour
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -385,11 +399,16 @@ async function loginWithCode(req, res) {
     return res
       .status(StatusCodes.OK)
       .cookie("token", JWT_Token, {
-        path: "/",
+        // expiresIn: ServerConfig.JWT_EXPIRY,
         httpOnly: true,
-        expiresIn: ServerConfig.JWT_EXPIRY,
-        sameSite: false,
+        // path = where the cookie is valid
+        path: "/",
+        // secure = only send cookie over https
         secure: true,
+        // sameSite = only send cookie if the request is coming from the same origin
+        sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
+        // maxAge = how long the cookie is valid for in milliseconds
+        maxAge: 3600000, // 1 hour
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -426,11 +445,16 @@ async function loginWithGoogle(req, res) {
     return res
       .status(StatusCodes.OK)
       .cookie("token", JWT_Token, {
-        path: "/",
+        // expiresIn: ServerConfig.JWT_EXPIRY,
         httpOnly: true,
-        expiresIn: ServerConfig.JWT_EXPIRY,
-        sameSite: false,
+        // path = where the cookie is valid
+        path: "/",
+        // secure = only send cookie over https
         secure: true,
+        // sameSite = only send cookie if the request is coming from the same origin
+        sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
+        // maxAge = how long the cookie is valid for in milliseconds
+        maxAge: 3600000, // 1 hour
       })
       .json(SuccessResponse);
   } catch (error) {
