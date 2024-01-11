@@ -5,6 +5,7 @@ const AppError = require("../utils/error/app-error");
 const { ServerConfig } = require("../config");
 
 async function checkAuthentication(req, res, next) {
+  let TokenError;
   try {
     const token = req.cookies.token;
     if (!token)
@@ -12,7 +13,8 @@ async function checkAuthentication(req, res, next) {
         "Please provide Access Token or Login first",
         StatusCodes.BAD_REQUEST
       );
-    const isTokenExists = await AUTH.verifyToken(token);
+    const isTokenExists = AUTH.verifyToken(token);
+    TokenError = isTokenExists;
     if (!isTokenExists) throw error;
     let user;
 
@@ -40,19 +42,19 @@ async function checkAuthentication(req, res, next) {
     }
   } catch (error) {
     console.log(error);
-    ErrorResponse.message = error.explanation + req.cookies;
-    ErrorResponse.error = req.cookies;
+    ErrorResponse.message = error.explanation;
+    ErrorResponse.error = TokenError;
     let statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
     ErrorResponse.stack =
       ServerConfig.NODE_ENV === "development"
         ? error.stack
         : error.stack + req.cookies;
     if (error.name == "JsonWebTokenError") {
-      ErrorResponse.message = "Invalid JWT token------" + req.cookies;
+      ErrorResponse.message = "Invalid JWT token";
       statusCode = StatusCodes.UNAUTHORIZED;
     }
     if (error.name == "TokenExpiredError") {
-      ErrorResponse.message = "JWT Token has been expired-------" + req.cookies;
+      ErrorResponse.message = "JWT Token has been expired";
       statusCode = StatusCodes.UNAUTHORIZED;
     }
     return res.status(statusCode).json(ErrorResponse);

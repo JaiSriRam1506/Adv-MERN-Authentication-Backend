@@ -15,9 +15,9 @@ async function createToken(input) {
   }
 }
 
-async function verifyToken(token) {
+function verifyToken(token) {
   try {
-    return await jwt.verify(token, serverConfig.JWT_SECRET);
+    return jwt.verify(token, "adsfdhdj%$#@*!1285mkl");
   } catch (error) {
     console.log(error);
     throw error;
