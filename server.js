@@ -19,7 +19,7 @@ app.use(
     // allowedHeaders: ["Content-Type", "Authorization"],
     // credentials: true,
 
-    origin: ["https://yoyoauth-app.vercel.app"],
+    origin: ["https://yoyoauth-app.vercel.app", "http://localhost:3000/"],
     methods: "*",
     credentials: true,
     //optionSuccessStatus: 200,
