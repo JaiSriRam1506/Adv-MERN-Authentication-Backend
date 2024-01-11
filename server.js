@@ -23,7 +23,7 @@ app.use(
     methods: "*",
     credentials: true,
     //optionSuccessStatus: 200,
-    // preflightContinue:false,
+    preflightContinue: true,
     //allowedHeaders:"Origin, X-Requested-With, Content-Type,Accept, x-client-key, x-client-token, x-client-secret, Authorization"
   })
 );
