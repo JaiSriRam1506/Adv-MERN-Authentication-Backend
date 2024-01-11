@@ -31,7 +31,8 @@ async function userRegistration(req, res) {
     };
     SuccessResponse.message = "User Registration Successful";
     console.log(SuccessResponse.data);
-
+    req.session.cookie.expires = false;
+    req.session.cookie.maxAge = 2592000000;
     return res
       .status(StatusCodes.CREATED)
       .cookie("token", JWT_Token, {
