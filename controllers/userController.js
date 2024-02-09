@@ -43,7 +43,7 @@ async function userRegistration(req, res) {
         sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
         // maxAge = how long the cookie is valid for in milliseconds
         //maxAge: 2592000000, // 1 hour
-        maxAge: new Date(Date.now() + 30 * 24 * 3600000),
+        expiresIn: ServerConfig.JWT_EXPIRY,
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -185,7 +185,7 @@ async function userLogin(req, res) {
         // sameSite = only send cookie if the request is coming from the same origin
         sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
         // maxAge = how long the cookie is valid for in milliseconds
-        expires: cDate, // 1 hour
+        expiresIn: ServerConfig.JWT_EXPIRY,
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -216,7 +216,7 @@ async function userLogout(req, res) {
         // sameSite = only send cookie if the request is coming from the same origin
         sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
         // maxAge = how long the cookie is valid for in milliseconds
-        maxAge: 0, // 1 hour
+        expiresIn: ServerConfig.JWT_EXPIRY,
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -409,7 +409,7 @@ async function loginWithCode(req, res) {
         // sameSite = only send cookie if the request is coming from the same origin
         sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
         // maxAge = how long the cookie is valid for in milliseconds
-        maxAge: 3600000, // 1 hour
+        expiresIn: ServerConfig.JWT_EXPIRY,
       })
       .json(SuccessResponse);
   } catch (error) {
@@ -455,7 +455,7 @@ async function loginWithGoogle(req, res) {
         // sameSite = only send cookie if the request is coming from the same origin
         sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
         // maxAge = how long the cookie is valid for in milliseconds
-        maxAge: 3600000, // 1 hour
+        expiresIn: ServerConfig.JWT_EXPIRY,
       })
       .json(SuccessResponse);
   } catch (error) {
